@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, Text, Button, useState } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Button, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { gosteiFilme } from './FilmesActions';
+import { gosteiFilme, adicionarComentario } from './FilmesActions';
 
 const DetalhesFilme = ({ route }) => {
   const { filme } = route.params;
@@ -9,7 +9,7 @@ const DetalhesFilme = ({ route }) => {
 
   const dispatch = useDispatch();
 
-  const handleGostei = (filme) => {
+  const handleGostei = () => {
     dispatch(gosteiFilme(filme.id));
     dispatch(adicionarComentario(filme.id, comentario));
 

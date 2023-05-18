@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TextInput, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { adicionarComentario } from './FilmesActions';
+import { adicionarComentario } from './saga';
 
 const Perfil = () => {
   const filmes = useSelector((state) => state.filmes);
@@ -10,8 +10,8 @@ const Perfil = () => {
 
   const filmesFavoritos = filmes.filter((filme) => filme.gostei);
 
-  const handleAdicionarComentario = (filmeId) => {
-    dispatch(adicionarComentario(filmeId, comentario));
+  const handleAdicionarComentario = (item) => {
+    dispatch(adicionarComentario(item.id, comentario));
   };
 
   return (
@@ -26,6 +26,7 @@ const Perfil = () => {
             <Text>{item.comentario}</Text>
           </View>
         )}
+        extraData={comentario}
       />
       <Text>Adicionar Comentário:</Text>
       <TextInput
@@ -33,10 +34,10 @@ const Perfil = () => {
         onChangeText={setComentario}
         placeholder="Digite seu comentário"
       />
-      <Button
+     <Button
         title="Adicionar"
-        onPress={() => handleAdicionarComentario(item.id)}
-      />
+        onPress={() => handleAdicionarComentario(item)} // Altere para item
+    />
     </View>
   );
 };

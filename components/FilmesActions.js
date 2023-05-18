@@ -6,7 +6,7 @@ export const gosteiFilme = (filmeId) => {
       }
     };
   };
-
+  
   export const adicionarComentario = (filmeId, comentario) => ({
     type: 'ADD_COMENTARIO',
     payload: {
@@ -14,3 +14,5 @@ export const gosteiFilme = (filmeId) => {
       comentario,
     },
   });
+  
+  
