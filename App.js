@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './components/LoginScreen';
 import ListaFilmes from './components/ListaFilmes';
 import DetalhesFilme from './components/DetalhesFilme';
-import PerfilProvider from './components/Perfil';
+import Perfil from './components/Perfil';
 import { Provider } from 'react-redux';
 import store from './components/store';
 
@@ -18,7 +18,7 @@ const App = () => {
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="ListaFilmes" component={ListaFilmes} />
           <Stack.Screen name="DetalhesFilme" component={DetalhesFilme} options={{ title: 'Detalhes do Filme' }}/>
-          <Stack.Screen name="Perfil" component={PerfilProvider} options={{ title: 'Meu Perfil' }}/>
+          <Stack.Screen name="Perfil" component={Perfil} options={{ title: 'Meu Perfil' }}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

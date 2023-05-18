@@ -3,7 +3,6 @@ import { View, FlatList, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FilmeItem from './FilmeItem';
 
-
 const ListaFilmes = () => {
   const navigation = useNavigation();
 
@@ -15,7 +14,7 @@ const ListaFilmes = () => {
 
   const handlePress = (filme) => {
     navigation.navigate('DetalhesFilme', { filme });
-};
+  };
 
   const handleGostei = (filmeId) => {
     const updatedFilmes = filmes.map((filme) => {
@@ -36,8 +35,10 @@ const ListaFilmes = () => {
         <FlatList
             data={filmes}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <FilmeItem filme={item} onPress={handlePress} />}
-      />
+            renderItem={({ item }) => (
+            <FilmeItem filme={item} onPress={handlePress} onGostei={handleGostei} />
+            )}
+        />
     </View>
   );
 };
