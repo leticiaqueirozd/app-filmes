@@ -8,7 +8,7 @@ const initialState = {
   
   const filmesReducer = (state = initialState, action) => {
     switch (action.type) {
-      case 'GOSTEI':
+      case 'GOSTEI_FILME':
         return {
           ...state,
           filmes: state.filmes.map((filme) => {
@@ -24,4 +24,3 @@ const initialState = {
   };
   
   export default filmesReducer;
-  
