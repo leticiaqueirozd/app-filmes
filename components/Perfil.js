@@ -10,8 +10,8 @@ const Perfil = () => {
 
   const filmesFavoritos = filmes.filter((filme) => filme.gostei);
 
-  const handleAdicionarComentario = (item) => {
-    dispatch(adicionarComentario(item.id, comentario));
+  const handleAdicionarComentario = (filmeId) => {
+    dispatch(adicionarComentario(filmeId, comentario));
   };
 
   return (
@@ -34,9 +34,19 @@ const Perfil = () => {
         onChangeText={setComentario}
         placeholder="Digite seu comentário"
       />
-      <Button
-        title="Adicionar"
-        onPress={() => handleAdicionarComentario(item)} // Altere para item válido
+      <FlatList
+        data={filmesFavoritos}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View>
+            <Text>{item.titulo}</Text>
+            <Button
+              title="Adicionar Comentário"
+              onPress={() => handleAdicionarComentario(item.id)}
+            />
+          </View>
+        )}
+        extraData={comentario}
       />
     </View>
   );

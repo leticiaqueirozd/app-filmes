@@ -6,7 +6,7 @@ import FilmeItem from './FilmeItem';
 const ListaFilmes = () => {
   const navigation = useNavigation();
 
-  const [filmes, setFilmes] = useState([
+  const filmes = useState([
     { id: 1, titulo: 'Filme 1', sinopse: 'Sinopse do Filme 1', gostei: false },
     { id: 2, titulo: 'Filme 2', sinopse: 'Sinopse do Filme 2', gostei: false },
     { id: 3, titulo: 'Filme 3', sinopse: 'Sinopse do Filme 3', gostei: false },
@@ -23,7 +23,7 @@ const ListaFilmes = () => {
       }
       return filme;
     });
-    setFilmes(updatedFilmes);
+    filmes(updatedFilmes);
     navigation.navigate('Perfil');
   };
 

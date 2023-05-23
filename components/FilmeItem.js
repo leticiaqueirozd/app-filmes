@@ -1,26 +1,30 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 const FilmeItem = ({ filme, onPress, onGostei }) => {
-    const handlePress = () => {
-        onPress(filme);
-    };
-    
-    const handleGostei = () => {
-      onGostei(filme.id);
-    };
-    return (
-        <TouchableOpacity onPress={handlePress}>
-          <View style={styles.container}>
-            <Image source={{ uri: filme.imagem }} style={styles.imagem} />
-            <View style={styles.textContainer}>
-              <Text style={styles.titulo}>{filme.titulo}</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      );
-    };
+  const handlePress = () => {
+    onPress(filme);
+  };
+
+  const handleGostei = () => {
+    onGostei(filme.id);
+  };
+
+  return (
+    <TouchableOpacity onPress={handlePress}>
+      <View style={styles.container}>
+        <Image source={{ uri: filme.imagem }} style={styles.imagem} />
+        <View style={styles.textContainer}>
+          <Text style={styles.titulo}>{filme.titulo}</Text>
+          <Text style={styles.sinopse}>{filme.sinopse}</Text>
+          <TouchableOpacity onPress={handleGostei}>
+            <Text style={styles.button}>Gostei</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -42,6 +46,10 @@ const styles = StyleSheet.create({
   },
   sinopse: {
     fontSize: 16,
+  },
+  button: {
+    fontSize: 16,
+    color: 'blue',
   },
 });
 
