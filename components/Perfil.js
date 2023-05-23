@@ -20,7 +20,7 @@ const Perfil = () => {
       <Text>{item.comentario}</Text>
       <Button
         title="Adicionar"
-        onPress={() => handleAdicionarComentario(item, comentario)} // Passando item como argumento
+        onPress={() => handleAdicionarComentario(item)} // Passando item como argumento
       />
     </View>
   );

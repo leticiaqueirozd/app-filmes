@@ -3,6 +3,8 @@ import { adicionarComentarioSaga } from './saga';
 
 export function* rootSaga() {
   yield all([
-    adicionarComentarioSaga(action),
+    takeEvery('ADD_COMENTARIO', adicionarComentarioSaga)
   ]);
 }
+
+export default rootSaga;

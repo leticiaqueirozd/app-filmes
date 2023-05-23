@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useNavigation } from '@react-navigation/native';
 import { gosteiFilme, adicionarComentario } from './FilmesActions';
 
 const DetalhesFilme = ({ route }) => {
