@@ -7,7 +7,7 @@ const CadastroScreen = () => {
   const [senha, setSenha] = useState('');
 
   const handleCadastro = () => {
-    
+    //autenticacão
   };
 
   return (
