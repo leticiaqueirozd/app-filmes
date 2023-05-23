@@ -2,7 +2,7 @@ import { all, takeEvery, put } from 'redux-saga/effects';
 import { ADD_COMENTARIO, adicionarComentarioSaga } from './saga';
 
 function* adicionarComentarioSaga(action) {
-  yield put(adicionarComentarioSucesso(action.comentario));
+  yield put(adicionarComentarioSaga(action.comentario));
 }
 
 function* rootSaga() {
