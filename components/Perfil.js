@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TextInput, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { adicionarComentario } from './saga';
+import { adicionarComentario } from './FilmesActions';
 
 const Perfil = () => {
   const filmes = useSelector((state) => state.filmes);

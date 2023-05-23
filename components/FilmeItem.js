@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 
-const FilmeItem = ({ filme, onPress }) => {
+const FilmeItem = ({ filme, onPress, onGostei }) => {
     const handlePress = () => {
         onPress(filme);
     };

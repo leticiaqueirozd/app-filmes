@@ -6,6 +6,7 @@ import { gosteiFilme, adicionarComentario } from './FilmesActions';
 const DetalhesFilme = ({ route }) => {
   const { filme } = route.params;
   const [comentario, setComentario] = useState('');
+  const navigation = useNavigation();
 
   const dispatch = useDispatch();
 

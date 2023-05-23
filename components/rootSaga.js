@@ -1,8 +1,8 @@
-import { all } from 'redux-saga/effects';
+import { takeEvery, put, all } from 'redux-saga/effects';
 import { adicionarComentarioSaga } from './saga';
 
-export default function* rootSaga() {
+export function* rootSaga() {
   yield all([
-    adicionarComentarioSaga(),
+    adicionarComentarioSaga(action),
   ]);
 }
