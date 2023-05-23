@@ -20,7 +20,7 @@ const DetalhesFilme = ({ route }) => {
       <Text>{filme.titulo}</Text>
       <Text>{filme.sinopse}</Text>
       <TextInput value={comentario} onChangeText={setComentario} />
-      <Button title="Gostei" onPress={() => handleGostei(filme)} />
+      <Button title="Gostei" onPress={handleGostei} />
       <Button title="Não gostei" onPress={() => console.log('Não gostei')} />
     </View>
   );

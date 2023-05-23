@@ -7,7 +7,7 @@ const CadastroScreen = () => {
   const [senha, setSenha] = useState('');
 
   const handleCadastro = () => {
-    // Lógica para realizar o cadastro
+    
   };
 
   return (

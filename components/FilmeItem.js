@@ -7,6 +7,9 @@ const FilmeItem = ({ filme, onPress }) => {
         onPress(filme);
     };
     
+    const handleGostei = () => {
+      onGostei(filme.id);
+    };
     return (
         <TouchableOpacity onPress={handlePress}>
           <View style={styles.container}>
