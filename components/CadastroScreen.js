@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
 const CadastroScreen = () => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const navigation = useNavigation();
 
   const handleCadastro = () => {
     //autenticacão
-    navigation.navigate('ListaFilmes');
   };
 
   return (
