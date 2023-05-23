@@ -31,7 +31,7 @@ const LoginScreen = () => {
         value={password}
         onChangeText={setPassword}
       />
-      <Button title="Login" onPress={handleLogin} />
+      <Button title="Entrar" onPress={handleLogin} />
       <Button title="Cadastrar" onPress={handleCadastro} />
     </View>
   );
