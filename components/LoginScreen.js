@@ -10,7 +10,11 @@ const LoginScreen = () => {
   const handleLogin = () => {
     // autenticacão
     navigation.navigate('ListaFilmes');  
-};
+  };
+
+  const handleCadastro = () => {
+    navigation.navigate('Cadastro');
+  };
 
   return (
     <View style={styles.container}>
@@ -28,6 +32,7 @@ const LoginScreen = () => {
         onChangeText={setPassword}
       />
       <Button title="Login" onPress={handleLogin} />
+      <Button title="Cadastrar" onPress={handleCadastro} />
     </View>
   );
 };
