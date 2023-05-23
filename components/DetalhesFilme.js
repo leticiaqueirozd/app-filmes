@@ -13,7 +13,7 @@ const DetalhesFilme = ({ route }) => {
     dispatch(gosteiFilme(filme.id));
     dispatch(adicionarComentario(filme.id, comentario));
 
-    navigation.navigate('ListaFilmes');
+    navigation.navigate('Perfil');
   };
 
   return (

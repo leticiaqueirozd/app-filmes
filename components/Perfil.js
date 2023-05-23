@@ -14,18 +14,24 @@ const Perfil = () => {
     dispatch(adicionarComentario(item.id, comentario));
   };
 
+  const renderItem = ({ item }) => (
+    <View>
+      <Text>{item.titulo}</Text>
+      <Text>{item.comentario}</Text>
+      <Button
+        title="Adicionar"
+        onPress={() => handleAdicionarComentario(item, comentario)} // Passando item como argumento
+      />
+    </View>
+  );
+
   return (
     <View>
       <Text>Filmes que eu gostei:</Text>
       <FlatList
         data={filmesFavoritos}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.titulo}</Text>
-            <Text>{item.comentario}</Text>
-          </View>
-        )}
+        renderItem={renderItem}
         extraData={comentario}
       />
       <Text>Adicionar Comentário:</Text>
@@ -34,10 +40,6 @@ const Perfil = () => {
         onChangeText={setComentario}
         placeholder="Digite seu comentário"
       />
-     <Button
-        title="Adicionar"
-        onPress={() => handleAdicionarComentario(item)} // Altere para item
-    />
     </View>
   );
 };
