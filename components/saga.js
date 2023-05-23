@@ -1,14 +1,12 @@
 import { takeEvery, put } from 'redux-saga/effects';
-import { adicionarComentario } from './FilmesActions';
+import { adicionarComentarioSuccess } from './FilmesActions';
 
-export function* adicionarComentario(action) {
+export function* adicionarComentarioSaga(action) {
   const { filmeId, comentario } = action.payload;
 
-  yield put(adicionarComentario(filmeId, comentario));
+  yield put(adicionarComentarioSuccess(filmeId, comentario));
 }
 
 export function* rootSaga() {
-  yield takeEvery('ADD_COMENTARIO', adicionarComentario);
+  yield takeEvery('ADD_COMENTARIO', adicionarComentarioSaga);
 }
-
-export default rootSaga;

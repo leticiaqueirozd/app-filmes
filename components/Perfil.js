@@ -34,10 +34,10 @@ const Perfil = () => {
         onChangeText={setComentario}
         placeholder="Digite seu comentário"
       />
-     <Button
+      <Button
         title="Adicionar"
-        onPress={() => handleAdicionarComentario(item)} // Altere para item
-    />
+        onPress={() => handleAdicionarComentario(item)} // Altere para item válido
+      />
     </View>
   );
 };
