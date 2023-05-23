@@ -27,16 +27,18 @@ const ListaFilmes = () => {
     navigation.navigate('Perfil');
   };
 
+  const filmesGostei = filmes.filter((filme) => filme.gostei);
+
   return (
     <View>
-      <Button title="Perfil" onPress={() => navigation.navigate('Perfil')} />
-      <FlatList
-        data={filmes}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <FilmeItem filme={item} onPress={handlePress} onGostei={handleGostei} />
-        )}
-      />
+        <Button title="Perfil" onPress={() => navigation.navigate('Perfil')} />
+        <FlatList
+            data={filmes}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+            <FilmeItem filme={item} onPress={handlePress} onGostei={handleGostei} />
+            )}
+        />
     </View>
   );
 };

@@ -10,3 +10,5 @@ export function* adicionarComentarioSaga(action) {
 export function* rootSaga() {
   yield takeEvery('ADD_COMENTARIO', adicionarComentarioSaga);
 }
+
+export default rootSaga;

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
-import { useDispatch, useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 import { gosteiFilme, adicionarComentario } from './FilmesActions';
 
 const DetalhesFilme = ({ route }) => {
   const { filme } = route.params;
   const [comentario, setComentario] = useState('');
-  const navigation = useNavigation();
 
   const dispatch = useDispatch();
 
@@ -14,7 +13,7 @@ const DetalhesFilme = ({ route }) => {
     dispatch(gosteiFilme(filme.id));
     dispatch(adicionarComentario(filme.id, comentario));
 
-    navigation.navigate('Perfil');
+    navigation.navigate('ListaFilmes');
   };
 
   return (
