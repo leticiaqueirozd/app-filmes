@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { View, Text, Button, TextInput } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { gosteiFilme, adicionarComentario } from './FilmesActions';
+import React, { useState } from "react";
+import { View, Text, Button, TextInput } from "react-native";
+import { useDispatch } from "react-redux";
+import { gosteiFilme, adicionarComentario } from "./FilmesActions";
 
 const DetalhesFilme = ({ route, navigation }) => {
   const { filme } = route.params;
-  const [comentario, setComentario] = useState('');
+  const [comentario, setComentario] = useState("");
 
   const dispatch = useDispatch();
 
   const handleGostei = () => {
     dispatch(gosteiFilme(filme.id));
-    dispatch(adicionarComentario(filme.id, comentario));
+    //dispatch(adicionarComentario(filme.id, comentario));
 
-    navigation.navigate('ListaFilmes');
+    navigation.navigate("ListaFilmes");
   };
 
   return (
@@ -26,7 +26,7 @@ const DetalhesFilme = ({ route, navigation }) => {
         placeholder="Digite um comentário"
       />
       <Button title="Gostei" onPress={handleGostei} />
-      <Button title="Não gostei" onPress={() => console.log('Não gostei')} />
+      <Button title="Não gostei" onPress={() => console.log("Não gostei")} />
     </View>
   );
 };

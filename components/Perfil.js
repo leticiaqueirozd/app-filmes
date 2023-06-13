@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, TextInput, Button } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import { adicionarComentario } from './FilmesActions';
+import React, { useState } from "react";
+import { View, Text, FlatList, TextInput, Button } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { adicionarComentario } from "./FilmesActions";
 
 const Perfil = () => {
-  const filmes = useSelector((state) => state.filmes);
-  const [comentario, setComentario] = useState('');
+  const filmesObj = useSelector((state) => state.filmes);
+  const filmes = Object.values(filmesObj);
+  const [comentario, setComentario] = useState("");
   const dispatch = useDispatch();
 
   const filmesFavoritos = filmes.filter((filme) => filme.gostei);

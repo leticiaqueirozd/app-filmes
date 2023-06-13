@@ -1,14 +1,14 @@
 export const gosteiFilme = (filmeId) => {
   return {
-    type: 'GOSTEI_FILME',
+    type: "GOSTEI_FILME",
     payload: {
-      filmeId: filmeId
-    }
+      filmeId: filmeId,
+    },
   };
 };
 
 export const adicionarComentario = (filmeId, comentario) => ({
-  type: 'ADD_COMENTARIO',
+  type: "ADD_COMENTARIO",
   payload: {
     filmeId,
     comentario,
@@ -16,7 +16,7 @@ export const adicionarComentario = (filmeId, comentario) => ({
 });
 
 export const adicionarComentarioSuccess = (filmeId, comentario) => ({
-  type: 'ADD_COMENTARIO_SUCCESS',
+  type: "ADD_COMENTARIO_SUCCESS",
   payload: {
     filmeId,
     comentario,
