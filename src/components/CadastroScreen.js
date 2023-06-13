@@ -10,7 +10,7 @@ const CadastroScreen = () => {
   const navigation = useNavigation();
 
   const handleSignup = () => {
-    // Lógica de criação de conta aqui
+    // autenticacão
     navigation.navigate('Entrar');
   };
 
