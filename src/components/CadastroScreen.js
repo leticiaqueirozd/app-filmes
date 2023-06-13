@@ -46,7 +46,7 @@ const CadastroScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    top: 50,
     alignItems: 'center',
     paddingHorizontal: 30,
   },
