@@ -24,20 +24,21 @@ const LoginScreen = () => {
         password,
       });
 
-      if (response.status === 200) {
-        const token = response.data.token;
-        storeToken(token);
+      const token = response.data.token;
+      storeToken(token);
 
-        navigation.navigate("Filmes");
-      } else {
-        Alert.alert("Erro", response.data.message);
-      }
+      navigation.navigate("Filmes");
     } catch (error) {
       console.error(error);
-      Alert.alert(
-        "Erro",
-        "Ocorreu um erro durante o login. Tente novamente mais tarde."
-      );
+
+      if (error.response) {
+        Alert.alert("Erro", error.response.data.message);
+      } else {
+        Alert.alert(
+          "Erro",
+          "Ocorreu um erro durante o login. Tente novamente mais tarde."
+        );
+      }
     }
   };
 

@@ -27,19 +27,20 @@ const CadastroScreen = () => {
           password,
         });
 
-        if (response.status === 201) {
-          Alert.alert("Cadastro", response.data.message);
+        Alert.alert("Cadastro", response.data.message);
 
-          navigation.navigate("Entrar");
-        } else {
-          Alert.alert("Erro", response.data.message);
-        }
+        navigation.navigate("Entrar");
       } catch (error) {
         console.error(error);
-        Alert.alert(
-          "Erro",
-          "Ocorreu um erro durante o cadastro. Tente novamente mais tarde."
-        );
+
+        if (error.response) {
+          Alert.alert("Erro", error.response.data.message);
+        } else {
+          Alert.alert(
+            "Erro",
+            "Ocorreu um erro durante o cadastro. Tente novamente mais tarde."
+          );
+        }
       }
     }
   };

@@ -1,43 +1,54 @@
-import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import React from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from "react-native";
+import api from "../services/api";
 
-const movies = [
-  {
-    id: 1,
-    name: 'Filme 1',
-    synopsis: 'Sinopse do Filme 1',
-  },
-  {
-    id: 2,
-    name: 'Filme 2',
-    synopsis: 'Sinopse do Filme 2',
-  },
-  {
-    id: 3,
-    name: 'Filme 3',
-    synopsis: 'Sinopse do Filme 3',
-  },
-];
+const listaFilmes = async () => {
+  try {
+    const response = await api.get("/movies");
+    const movies = response.data;
+
+    return movies;
+  } catch (error) {
+    console.error(error);
+
+    if (error.response) {
+      Alert.alert("Erro", error.response.data.message);
+    }
+    Alert.alert("Erro", "Ocorreu um erro durante a listagem dos filmes.");
+  }
+};
 
 const ListaFilmeScreen = ({ navigation }) => {
   const handleMoviePress = (movie) => {
-    navigation.navigate('Detalhes', { movie });
+    navigation.navigate("Detalhes", { movie });
   };
 
-  const renderMovieItem = ({ item }) => (
-    <TouchableOpacity
-      style={styles.movieItem}
-      onPress={() => handleMoviePress(item)}
-    >
-      <Text style={styles.movieName}>{item.name}</Text>
-      <Text style={styles.movieSynopsis}>{item.synopsis}</Text>
-    </TouchableOpacity>
-  );
+  const renderMovieItem = async ({ item }) => {
+    const response = await api.get(`/movies/${item.id}`);
+    const movie = response.data;
+
+    return (
+      <TouchableOpacity
+        style={styles.movieItem}
+        onPress={() => handleMoviePress(movie)}
+      >
+        <Text style={styles.movieName}>{movie.name}</Text>
+        <Text style={styles.movieSynopsis}>{movie.synopsis}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={movies}
+        data={listaFilmes}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderMovieItem}
         contentContainerStyle={styles.movieList}
@@ -50,29 +61,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 30,
-    
   },
   movieList: {
     flexGrow: 1,
-    width: '100%',
+    width: "100%",
   },
   movieItem: {
     top: 20,
     marginBottom: 20,
     padding: 10,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: "#f2f2f2",
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
   },
   movieName: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 5,
   },
   movieSynopsis: {
     fontSize: 14,
-    color: '#555',
+    color: "#555",
   },
 });
 
