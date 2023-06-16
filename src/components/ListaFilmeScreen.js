@@ -46,8 +46,9 @@ const ListaFilmeScreen = ({ navigation }) => {
     navigation.navigate("Detalhes", { movie });
   };
 
-  const renderMovieItem = async ({ item }) => {
-    console.log(item)(
+  const renderMovieItem = ({ item }) => {
+    console.log(item);
+    return (
       <TouchableOpacity
         style={styles.movieItem}
         onPress={() => handleMoviePress(item)}
