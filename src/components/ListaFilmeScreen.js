@@ -36,24 +36,22 @@ const ListaFilmeScreen = ({ navigation }) => {
       if (error.response) {
         Alert.alert("Erro", error.response.data.message);
       } else {
-        Alert.alert("Erro", "Ocorreu um erro durante a listagem dos filmes.");
+        Alert.alert("Erro", "Ocorreu um erro. Tente novamente mais tarde.");
       }
 
       return [];
     }
   };
 
-  const handleMoviePress = (movie) => {
-    navigation.navigate("Detalhes", { movie });
+  const handleMoviePress = (movieId) => {
+    navigation.navigate("Detalhes", { movieId });
   };
 
-  const renderMovieItem = ({ item }) => {
-    console.log(item);
-    return (
-      <ScrollView>
+  const renderMovieItem = ({ item }) => (
+    <ScrollView>
       <TouchableOpacity
         style={styles.movieItem}
-        onPress={() => handleMoviePress(item)}
+        onPress={() => handleMoviePress(item.id)}
       >
         <ImageBackground
           source={{ uri: item.posterPath }}
@@ -62,9 +60,8 @@ const ListaFilmeScreen = ({ navigation }) => {
         <Text style={styles.movieName}>{item.title}</Text>
         <Text style={styles.movieSynopsis}>{item.synopsis}</Text>
       </TouchableOpacity>
-      </ScrollView>
-    );
-  };
+    </ScrollView>
+  );
 
   return (
     <View style={styles.container}>
@@ -82,10 +79,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 30,
-    backgroundColor: "#1c1c1c"
+    backgroundColor: "#1c1c1c",
   },
   movieList: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   movieItem: {
     top: 20,

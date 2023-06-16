@@ -12,7 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import api from "../services/api";
 import { storeToken } from "../services/auth";
 
-import logo from '../../assets/logo.png'
+import logo from "../../assets/logo.png";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -22,6 +22,8 @@ const LoginScreen = () => {
 
   const handleLogin = async () => {
     try {
+      console.log("Realizando login, aguarde...");
+
       const response = await api.post("/login", {
         email,
         password,
@@ -37,10 +39,7 @@ const LoginScreen = () => {
       if (error.response) {
         Alert.alert("Erro", error.response.data.message);
       } else {
-        Alert.alert(
-          "Erro",
-          "Ocorreu um erro durante o login. Tente novamente mais tarde."
-        );
+        Alert.alert("Erro", "Ocorreu um erro. Tente novamente mais tarde.");
       }
     }
   };
@@ -84,12 +83,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: 'center',
+    justifyContent: "center",
     paddingHorizontal: 30,
-    backgroundColor: 'black', 
+    backgroundColor: "black",
   },
   title: {
-    color: 'white',
+    color: "white",
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 30,
@@ -102,24 +101,24 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingHorizontal: 10,
     marginBottom: 20,
-    backgroundColor: '#333333', 
-    shadowColor: '#000', 
-    shadowOpacity: 0.3, 
-    shadowOffset: { width: 0, height: 5 }, 
-    shadowRadius: 2, 
-    color: '#000000',
+    backgroundColor: "#333333",
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 2,
+    color: "#000000",
   },
   button: {
     width: "100%",
     height: 50,
-    backgroundColor: '#8b0000',
+    backgroundColor: "#8b0000",
     borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonText: {
     fontSize: 16,
-    color: 'white',
+    color: "white",
     fontWeight: "bold",
   },
   signupButton: {
@@ -128,15 +127,15 @@ const styles = StyleSheet.create({
   },
   signupText: {
     fontSize: 16,
-    color: 'white',
+    color: "white",
     marginTop: 20,
   },
   image: {
-    width: '40%',
-    height: '20%',
+    width: "40%",
+    height: "20%",
     marginBottom: 40,
     borderRadius: 40,
-  }
+  },
 });
 
 export default LoginScreen;

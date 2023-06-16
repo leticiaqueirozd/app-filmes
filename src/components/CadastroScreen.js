@@ -11,7 +11,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import api from "../services/api";
 
-import logo from '../../assets/logo.png'
+import logo from "../../assets/logo.png";
 
 const CadastroScreen = () => {
   const [email, setEmail] = useState("");
@@ -39,10 +39,7 @@ const CadastroScreen = () => {
         if (error.response) {
           Alert.alert("Erro", error.response.data.message);
         } else {
-          Alert.alert(
-            "Erro",
-            "Ocorreu um erro durante o cadastro. Tente novamente mais tarde."
-          );
+          Alert.alert("Erro", "Ocorreu um erro. Tente novamente mais tarde.");
         }
       }
     }
@@ -85,17 +82,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: 'center',
+    justifyContent: "center",
     paddingHorizontal: 30,
-    backgroundColor: 'black', 
+    backgroundColor: "black",
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 30
+    marginBottom: 30,
   },
   titlecard: {
-    color: 'white',
+    color: "white",
     fontWeight: "bold",
     fontSize: 20,
   },
@@ -107,32 +104,32 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingHorizontal: 10,
     marginBottom: 20,
-    backgroundColor: '#333333', 
-    shadowColor: '#000', 
-    shadowOpacity: 0.3, 
-    shadowOffset: { width: 0, height: 5 }, 
-    shadowRadius: 2, 
-    color: '#000000',
+    backgroundColor: "#333333",
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 2,
+    color: "#000000",
   },
   signupButton: {
     width: "100%",
     height: 50,
-    backgroundColor: '#8b0000',
+    backgroundColor: "#8b0000",
     borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonText: {
     fontSize: 16,
-    color: 'white',
+    color: "white",
     fontWeight: "bold",
   },
   image: {
-    width: '40%',
-    height: '20%',
+    width: "40%",
+    height: "20%",
     marginBottom: 40,
     borderRadius: 40,
-  }
+  },
 });
 
 export default CadastroScreen;
