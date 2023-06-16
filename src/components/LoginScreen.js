@@ -11,6 +11,8 @@ import { useNavigation } from "@react-navigation/native";
 import api from "../services/api";
 import { storeToken } from "../services/auth";
 
+import logo from '../../assets/logo.png'
+
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,14 +50,17 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Image source={logo} style={styles.image}></Image>
       <TextInput
         placeholder="E-mail"
+        placeholderTextColor="#999999"
         value={email}
         onChangeText={setEmail}
         style={styles.input}
       />
       <TextInput
         placeholder="Senha"
+        placeholderTextColor="#999999"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -80,6 +85,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: 'center',
     paddingHorizontal: 30,
+    backgroundColor: 'black', 
   },
   title: {
     color: 'white',
@@ -124,6 +130,12 @@ const styles = StyleSheet.create({
     color: 'white',
     marginTop: 20,
   },
+  image: {
+    width: '40%',
+    height: '20%',
+    marginBottom: 40,
+    borderRadius: 40,
+  }
 });
 
 export default LoginScreen;

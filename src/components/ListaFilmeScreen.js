@@ -57,8 +57,8 @@ const ListaFilmeScreen = ({ navigation }) => {
         //style={styles.movieImage}
       >
       
-      
-      </ImageBackground><Text style={styles.movieName}>{item.name}</Text>
+      </ImageBackground>
+      <Text style={styles.movieName}>{item.name}</Text>
       <Text style={styles.movieSynopsis}>{item.synopsis} Esse aqui é um pequeno exemplo de texto de synopse para analisar o tamanho e medidas adequadas para caber dentro do container Esse aqui é um pequeno exemplo de texto de synopse para analisar o tamanho e medidas adequadas para caber dentro do container</Text>
       </TouchableOpacity>
     );
