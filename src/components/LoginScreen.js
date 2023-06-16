@@ -77,11 +77,12 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    top: 50,
     alignItems: "center",
+    justifyContent: 'center',
     paddingHorizontal: 30,
   },
   title: {
+    color: 'white',
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 30,
@@ -89,23 +90,29 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     height: 50,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
+    borderRadius: 10,
     paddingHorizontal: 10,
     marginBottom: 20,
+    paddingHorizontal: 10,
+    marginBottom: 20,
+    backgroundColor: '#333333', 
+    shadowColor: '#000', 
+    shadowOpacity: 0.3, 
+    shadowOffset: { width: 0, height: 5 }, 
+    shadowRadius: 2, 
+    color: '#000000',
   },
   button: {
     width: "100%",
     height: 50,
-    backgroundColor: "#007bff",
-    borderRadius: 5,
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#8b0000',
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonText: {
     fontSize: 16,
-    color: "#fff",
+    color: 'white',
     fontWeight: "bold",
   },
   signupButton: {
@@ -114,7 +121,7 @@ const styles = StyleSheet.create({
   },
   signupText: {
     fontSize: 16,
-    color: "#007bff",
+    color: 'white',
     marginTop: 20,
   },
 });

@@ -70,8 +70,9 @@ const DetalhesFilmeScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#1c1c1c',
     flexGrow: 1,
-    top: 50,
+    top: 0,
     alignItems: 'center',
     paddingHorizontal: 30,
   },
@@ -79,10 +80,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: 'white',
   },
   movieSynopsis: {
     fontSize: 16,
     marginBottom: 20,
+    color: 'white',
   },
   likeContainer: {
     flexDirection: 'row',
@@ -97,16 +100,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   likeButton: {
-    backgroundColor: '#28a745',
+    backgroundColor: '#FFC300',
     marginRight: 10,
+    borderRadius: 25,
   },
   dislikeButton: {
-    backgroundColor: '#dc3545',
+    backgroundColor: '#8b0000',
     marginLeft: 10,
+    borderRadius: 25,
   },
   actionButtonText: {
-    fontSize: 16,
-    color: 'black',
+    fontSize: 17,
+    color: 'white',
     fontWeight: 'bold',
   },
   commentsSection: {
@@ -117,6 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 15,
+    color: 'white',
   },
   commentText: {
     fontSize: 16,
@@ -134,7 +140,7 @@ const styles = StyleSheet.create({
   submitButton: {
     width: '50%',
     height: 40,
-    backgroundColor: '#007bff',
+    backgroundColor: '#006400',
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
