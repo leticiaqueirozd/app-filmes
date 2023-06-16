@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
-  ImageBackground
+  ImageBackground,
 } from "react-native";
 import api from "../services/api";
 
@@ -53,14 +53,12 @@ const ListaFilmeScreen = ({ navigation }) => {
         style={styles.movieItem}
         onPress={() => handleMoviePress(item)}
       >
-      <ImageBackground
+        <ImageBackground
         //source={{ uri: item.image }}
         //style={styles.movieImage}
-      >
-      
-      </ImageBackground>
-      <Text style={styles.movieName}>{item.name}</Text>
-      <Text style={styles.movieSynopsis}>{item.synopsis} Esse aqui é um pequeno exemplo de texto de synopse para analisar o tamanho e medidas adequadas para caber dentro do container Esse aqui é um pequeno exemplo de texto de synopse para analisar o tamanho e medidas adequadas para caber dentro do container</Text>
+        ></ImageBackground>
+        <Text style={styles.movieName}>{item.title}</Text>
+        <Text style={styles.movieSynopsis}>{item.synopsis}</Text>
       </TouchableOpacity>
     );
   };
@@ -81,7 +79,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 30,
-    backgroundColor: '#1c1c1c',
+    backgroundColor: "#1c1c1c",
   },
   movieList: {
     flexGrow: 1,
@@ -90,30 +88,30 @@ const styles = StyleSheet.create({
     top: 20,
     marginBottom: 20,
     padding: 10,
-    backgroundColor: '#1c1c1c',
+    backgroundColor: "#1c1c1c",
     borderRadius: 5,
-    backgroundColor: '#333333', 
-    shadowColor: '#000', 
-    shadowOpacity: 0.3, 
-    shadowOffset: { width: 0, height: 5 }, 
-    shadowRadius: 2, 
-    color: '#000000',
-    height: '100%'
+    backgroundColor: "#333333",
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 2,
+    color: "#000000",
+    height: "100%",
   },
   movieName: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 10,
-    color: 'white',
+    color: "white",
   },
   movieSynopsis: {
     fontSize: 14,
-    color: 'white',
+    color: "white",
     marginTop: 12,
   },
   //movieImage: {
-    //opacity: 0.7,
-    //height: 150
+  //opacity: 0.7,
+  //height: 150
   //}
 });
 
