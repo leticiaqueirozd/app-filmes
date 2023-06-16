@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import api from "../services/api";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DetalhesFilmeScreen = ({ route }) => {
   const { movieId } = route.params;
@@ -57,14 +58,48 @@ const DetalhesFilmeScreen = ({ route }) => {
     }
   };
 
+  const fetchComments = async () => {
+    try {
+      const response = await api.get(`/movies/${movieId}/comments`);
+      setComments(response.data);
+      await AsyncStorage.setItem("comments", JSON.stringify(response.data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    const retrieveComments = async () => {
+      try {
+        const storedComments = await AsyncStorage.getItem("comments");
+        if (storedComments) {
+          setComments(JSON.parse(storedComments));
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchComments();
+    retrieveComments();
+  }, [movieId]);
+
   const handleCommentChange = (text) => {
     setComment(text);
   };
 
-  const handleCommentSubmit = () => {
+  const handleCommentSubmit = async () => {
     if (comment !== "") {
-      setComments([...comments, comment]);
-      setComment("");
+      try {
+        await api.post(`/movies/${movieId}/comments`, { content: comment });
+        setComment("");
+
+        const response = await api.get(`/movies/${movieId}/comments`);
+        setComments(response.data);
+        await AsyncStorage.setItem("comments", JSON.stringify(response.data));
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -128,6 +163,7 @@ const styles = StyleSheet.create({
   movieName: {
     fontSize: 24,
     fontWeight: "bold",
+    marginTop: 25,
     marginBottom: 10,
     color: "white",
   },
@@ -151,12 +187,12 @@ const styles = StyleSheet.create({
   likeButton: {
     backgroundColor: "#FFC300",
     marginRight: 10,
-    borderRadius: 25,
+    borderRadius: 5,
   },
   dislikeButton: {
     backgroundColor: "#8b0000",
     marginLeft: 10,
-    borderRadius: 25,
+    borderRadius: 5,
   },
   actionButtonText: {
     fontSize: 17,
@@ -165,7 +201,7 @@ const styles = StyleSheet.create({
   },
   commentsSection: {
     width: "100%",
-    top: 50,
+    top: 20,
   },
   commentsHeading: {
     fontSize: 20,
@@ -175,7 +211,8 @@ const styles = StyleSheet.create({
   },
   commentText: {
     fontSize: 16,
-    marginBottom: 10,
+    marginBottom: 20,
+    color: "white",
   },
   commentInput: {
     width: "100%",
@@ -185,6 +222,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 10,
+    color: "white",
   },
   submitButton: {
     width: "50%",

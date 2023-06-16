@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 2,
-    color: "#000000",
+    color: "white",
   },
   signupButton: {
     width: "100%",
