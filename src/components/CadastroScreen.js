@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import api from "../services/api";
