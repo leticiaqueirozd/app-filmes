@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Alert,
   ImageBackground,
+  ScrollView,
 } from "react-native";
 import api from "../services/api";
 
@@ -49,6 +50,7 @@ const ListaFilmeScreen = ({ navigation }) => {
   const renderMovieItem = ({ item }) => {
     console.log(item);
     return (
+      <ScrollView>
       <TouchableOpacity
         style={styles.movieItem}
         onPress={() => handleMoviePress(item)}
@@ -60,6 +62,7 @@ const ListaFilmeScreen = ({ navigation }) => {
         <Text style={styles.movieName}>{item.title}</Text>
         <Text style={styles.movieSynopsis}>{item.synopsis}</Text>
       </TouchableOpacity>
+      </ScrollView>
     );
   };
 
@@ -79,10 +82,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 30,
-    backgroundColor: "#1c1c1c",
+    backgroundColor: "#1c1c1c"
   },
   movieList: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   movieItem: {
     top: 20,
