@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -9,38 +9,50 @@ import {
 } from "react-native";
 import api from "../services/api";
 
-const listaFilmes = async () => {
-  try {
-    const response = await api.get("/movies");
-    const movies = response.data;
-
-    return movies;
-  } catch (error) {
-    console.error(error);
-
-    if (error.response) {
-      Alert.alert("Erro", error.response.data.message);
-    }
-    Alert.alert("Erro", "Ocorreu um erro durante a listagem dos filmes.");
-  }
-};
-
 const ListaFilmeScreen = ({ navigation }) => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const movies = await listMovies();
+
+      setMovies(movies);
+    };
+
+    fetchMovies();
+  }, []);
+
+  const listMovies = async () => {
+    try {
+      const response = await api.get("/movies");
+      const movies = response.data;
+
+      return movies;
+    } catch (error) {
+      console.error(error);
+
+      if (error.response) {
+        Alert.alert("Erro", error.response.data.message);
+      } else {
+        Alert.alert("Erro", "Ocorreu um erro durante a listagem dos filmes.");
+      }
+
+      return [];
+    }
+  };
+
   const handleMoviePress = (movie) => {
     navigation.navigate("Detalhes", { movie });
   };
 
   const renderMovieItem = async ({ item }) => {
-    const response = await api.get(`/movies/${item.id}`);
-    const movie = response.data;
-
-    return (
+    console.log(item)(
       <TouchableOpacity
         style={styles.movieItem}
-        onPress={() => handleMoviePress(movie)}
+        onPress={() => handleMoviePress(item)}
       >
-        <Text style={styles.movieName}>{movie.name}</Text>
-        <Text style={styles.movieSynopsis}>{movie.synopsis}</Text>
+        <Text style={styles.movieName}>{item.title}</Text>
+        <Text style={styles.movieSynopsis}>{item.synopsis}</Text>
       </TouchableOpacity>
     );
   };
@@ -48,7 +60,7 @@ const ListaFilmeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={listaFilmes}
+        data={movies}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderMovieItem}
         contentContainerStyle={styles.movieList}

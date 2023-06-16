@@ -1,16 +1,23 @@
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getToken } from "./auth";
 
 const api = axios.create({
   baseURL: "https://projeto-aos-2023-1.onrender.com",
 });
 
 api.interceptors.request.use(
-  (config) => {
-    const token = AsyncStorage.getItem("token");
+  async (config) => {
+    try {
+      const token = await getToken();
+      console.log("Token:", token);
 
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    } catch (error) {
+      console.error("Erro ao adicionar o token à requisição: ", error);
+
+      return Promise.reject(error);
     }
 
     return config;
