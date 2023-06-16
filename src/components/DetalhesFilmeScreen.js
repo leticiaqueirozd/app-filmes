@@ -6,15 +6,16 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Alert,
 } from "react-native";
 import api from "../services/api";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const DetalhesFilmeScreen = ({ route }) => {
   const { movieId } = route.params;
   const [movie, setMovie] = useState({});
   const [like, setLike] = useState(false);
-  const [comment, setComment] = useState("");
+  const [newComment, setNewComment] = useState("");
   const [comments, setComments] = useState([]);
 
   const getMovieDetails = async () => {
@@ -24,7 +25,7 @@ const DetalhesFilmeScreen = ({ route }) => {
 
       setMovie(movie);
       setLike(isFavorited);
-      setComments(movieComments);
+      setComments(movieComments.map((item) => item.content));
     } catch (error) {
       console.error(error);
 
@@ -58,47 +59,24 @@ const DetalhesFilmeScreen = ({ route }) => {
     }
   };
 
-  const fetchComments = async () => {
+  const handleNewComment = (text) => {
+    setNewComment(text);
+  };
+
+  const handleNewCommentSubmit = async () => {
     try {
-      const response = await api.get(`/movies/${movieId}/comments`);
-      setComments(response.data);
-      await AsyncStorage.setItem("comments", JSON.stringify(response.data));
+      await api.post(`/movies/${movieId}/comment`, {
+        content: newComment,
+      });
+      setNewComment("");
+      getMovieDetails();
     } catch (error) {
       console.error(error);
-    }
-  };
 
-  useEffect(() => {
-    const retrieveComments = async () => {
-      try {
-        const storedComments = await AsyncStorage.getItem("comments");
-        if (storedComments) {
-          setComments(JSON.parse(storedComments));
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchComments();
-    retrieveComments();
-  }, [movieId]);
-
-  const handleCommentChange = (text) => {
-    setComment(text);
-  };
-
-  const handleCommentSubmit = async () => {
-    if (comment !== "") {
-      try {
-        await api.post(`/movies/${movieId}/comments`, { content: comment });
-        setComment("");
-
-        const response = await api.get(`/movies/${movieId}/comments`);
-        setComments(response.data);
-        await AsyncStorage.setItem("comments", JSON.stringify(response.data));
-      } catch (error) {
-        console.error(error);
+      if (error.response) {
+        Alert.alert("Erro", error.response.data.message);
+      } else {
+        Alert.alert("Erro", "Ocorreu um erro. Tente novamente mais tarde.");
       }
     }
   };
@@ -130,20 +108,24 @@ const DetalhesFilmeScreen = ({ route }) => {
 
       <View style={styles.commentsSection}>
         <Text style={styles.commentsHeading}>Comentários</Text>
-        {comments.map((item, index) => (
-          <Text key={index} style={styles.commentText}>
-            {item}
-          </Text>
-        ))}
+        {comments.length > 0 ? (
+          comments.map((item, index) => (
+            <Text key={index} style={styles.commentText}>
+              {item}
+            </Text>
+          ))
+        ) : (
+          <Text style={styles.noCommentsText}>Nenhum comentário ainda.</Text>
+        )}
         <TextInput
           placeholder="Adicione um comentário"
-          value={comment}
-          onChangeText={handleCommentChange}
+          value={newComment}
+          onChangeText={handleNewComment}
           style={styles.commentInput}
         />
         <TouchableOpacity
           style={styles.submitButton}
-          onPress={handleCommentSubmit}
+          onPress={handleNewCommentSubmit}
         >
           <Text style={styles.submitButtonText}>Adicionar</Text>
         </TouchableOpacity>
@@ -236,6 +218,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#fff",
     fontWeight: "bold",
+  },
+  noCommentsText: {
+    fontSize: 16,
+    color: "white",
   },
 });
 
