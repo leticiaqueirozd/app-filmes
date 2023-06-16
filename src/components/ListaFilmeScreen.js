@@ -54,8 +54,8 @@ const ListaFilmeScreen = ({ navigation }) => {
         onPress={() => handleMoviePress(item)}
       >
         <ImageBackground
-        //source={{ uri: item.image }}
-        //style={styles.movieImage}
+          source={{ uri: item.posterPath }}
+          style={styles.movieImage}
         ></ImageBackground>
         <Text style={styles.movieName}>{item.title}</Text>
         <Text style={styles.movieSynopsis}>{item.synopsis}</Text>
@@ -109,10 +109,10 @@ const styles = StyleSheet.create({
     color: "white",
     marginTop: 12,
   },
-  //movieImage: {
-  //opacity: 0.7,
-  //height: 150
-  //}
+  movieImage: {
+    opacity: 0.7,
+    height: 150,
+  },
 });
 
 export default ListaFilmeScreen;
